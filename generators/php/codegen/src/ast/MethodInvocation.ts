@@ -26,7 +26,7 @@ export class MethodInvocation extends AstNode {
     }
 
     public write(writer: Writer): void {
-        if (this.on) {
+        if (this.on != null) {
             this.on.write(writer);
             writer.write("->");
         }

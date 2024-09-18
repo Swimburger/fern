@@ -3,6 +3,8 @@
 namespace Seed\Endpoints\HttpMethods;
 
 use Seed\Core\RawClient;
+use Seed\Core\JsonApiRequest;
+use Seed\Core\HttpMethod;
 use JsonException;
 use Exception;
 use Psr\Http\Client\ClientExceptionInterface;
@@ -33,7 +35,7 @@ class HttpMethodsClient
     public function testGet(string $id, ?array $options = null): mixed
     {
         try {
-            $response = $this->client->sendRequest();
+            $response = $this->client->sendRequest(new JsonApiRequest(baseUrl: $this->options['baseUrl'] ?? '', path: "/http-methods/$$id", method: HttpMethod::GET));
             $statusCode = $response->getStatusCode();
             if ($statusCode >= 200 && $statusCode < 400) {
                 return json_decode($response->getBody()->getContents(), true, 512, JSON_THROW_ON_ERROR);
@@ -54,7 +56,7 @@ class HttpMethodsClient
     public function testPost(ObjectWithRequiredField $request, ?array $options = null): mixed
     {
         try {
-            $response = $this->client->sendRequest();
+            $response = $this->client->sendRequest(new JsonApiRequest(baseUrl: $this->options['baseUrl'] ?? '', path: "/http-methods", method: HttpMethod::POST, body: $request));
             $statusCode = $response->getStatusCode();
             if ($statusCode >= 200 && $statusCode < 400) {
                 return json_decode($response->getBody()->getContents(), true, 512, JSON_THROW_ON_ERROR);
@@ -76,7 +78,7 @@ class HttpMethodsClient
     public function testPut(string $id, ObjectWithRequiredField $request, ?array $options = null): mixed
     {
         try {
-            $response = $this->client->sendRequest();
+            $response = $this->client->sendRequest(new JsonApiRequest(baseUrl: $this->options['baseUrl'] ?? '', path: "/http-methods/$$id", method: HttpMethod::PUT, body: $request));
             $statusCode = $response->getStatusCode();
             if ($statusCode >= 200 && $statusCode < 400) {
                 return json_decode($response->getBody()->getContents(), true, 512, JSON_THROW_ON_ERROR);
@@ -98,7 +100,7 @@ class HttpMethodsClient
     public function testPatch(string $id, ObjectWithOptionalField $request, ?array $options = null): mixed
     {
         try {
-            $response = $this->client->sendRequest();
+            $response = $this->client->sendRequest(new JsonApiRequest(baseUrl: $this->options['baseUrl'] ?? '', path: "/http-methods/$$id", method: HttpMethod::PATCH, body: $request));
             $statusCode = $response->getStatusCode();
             if ($statusCode >= 200 && $statusCode < 400) {
                 return json_decode($response->getBody()->getContents(), true, 512, JSON_THROW_ON_ERROR);
@@ -119,7 +121,7 @@ class HttpMethodsClient
     public function testDelete(string $id, ?array $options = null): mixed
     {
         try {
-            $response = $this->client->sendRequest();
+            $response = $this->client->sendRequest(new JsonApiRequest(baseUrl: $this->options['baseUrl'] ?? '', path: "/http-methods/$$id", method: HttpMethod::DELETE));
             $statusCode = $response->getStatusCode();
             if ($statusCode >= 200 && $statusCode < 400) {
                 return json_decode($response->getBody()->getContents(), true, 512, JSON_THROW_ON_ERROR);

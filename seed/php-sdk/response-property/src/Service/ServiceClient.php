@@ -3,6 +3,8 @@
 namespace Seed\Service;
 
 use Seed\Core\RawClient;
+use Seed\Core\JsonApiRequest;
+use Seed\Core\HttpMethod;
 use JsonException;
 use Exception;
 use Psr\Http\Client\ClientExceptionInterface;
@@ -31,7 +33,7 @@ class ServiceClient
     public function getMovie(string $request, ?array $options = null): mixed
     {
         try {
-            $response = $this->client->sendRequest();
+            $response = $this->client->sendRequest(new JsonApiRequest(baseUrl: $this->options['baseUrl'] ?? '', path: "movie", method: HttpMethod::POST, body: $request));
             $statusCode = $response->getStatusCode();
             if ($statusCode >= 200 && $statusCode < 400) {
                 return json_decode($response->getBody()->getContents(), true, 512, JSON_THROW_ON_ERROR);
@@ -52,7 +54,7 @@ class ServiceClient
     public function getMovieDocs(string $request, ?array $options = null): mixed
     {
         try {
-            $response = $this->client->sendRequest();
+            $response = $this->client->sendRequest(new JsonApiRequest(baseUrl: $this->options['baseUrl'] ?? '', path: "movie", method: HttpMethod::POST, body: $request));
             $statusCode = $response->getStatusCode();
             if ($statusCode >= 200 && $statusCode < 400) {
                 return json_decode($response->getBody()->getContents(), true, 512, JSON_THROW_ON_ERROR);
@@ -73,7 +75,7 @@ class ServiceClient
     public function getMovieName(string $request, ?array $options = null): mixed
     {
         try {
-            $response = $this->client->sendRequest();
+            $response = $this->client->sendRequest(new JsonApiRequest(baseUrl: $this->options['baseUrl'] ?? '', path: "movie", method: HttpMethod::POST, body: $request));
             $statusCode = $response->getStatusCode();
             if ($statusCode >= 200 && $statusCode < 400) {
                 return json_decode($response->getBody()->getContents(), true, 512, JSON_THROW_ON_ERROR);
@@ -94,7 +96,7 @@ class ServiceClient
     public function getMovieMetadata(string $request, ?array $options = null): mixed
     {
         try {
-            $response = $this->client->sendRequest();
+            $response = $this->client->sendRequest(new JsonApiRequest(baseUrl: $this->options['baseUrl'] ?? '', path: "movie", method: HttpMethod::POST, body: $request));
             $statusCode = $response->getStatusCode();
             if ($statusCode >= 200 && $statusCode < 400) {
                 return json_decode($response->getBody()->getContents(), true, 512, JSON_THROW_ON_ERROR);
@@ -115,7 +117,7 @@ class ServiceClient
     public function getOptionalMovie(string $request, ?array $options = null): mixed
     {
         try {
-            $response = $this->client->sendRequest();
+            $response = $this->client->sendRequest(new JsonApiRequest(baseUrl: $this->options['baseUrl'] ?? '', path: "movie", method: HttpMethod::POST, body: $request));
             $statusCode = $response->getStatusCode();
             if ($statusCode >= 200 && $statusCode < 400) {
                 return json_decode($response->getBody()->getContents(), true, 512, JSON_THROW_ON_ERROR);
@@ -136,7 +138,7 @@ class ServiceClient
     public function getOptionalMovieDocs(string $request, ?array $options = null): mixed
     {
         try {
-            $response = $this->client->sendRequest();
+            $response = $this->client->sendRequest(new JsonApiRequest(baseUrl: $this->options['baseUrl'] ?? '', path: "movie", method: HttpMethod::POST, body: $request));
             $statusCode = $response->getStatusCode();
             if ($statusCode >= 200 && $statusCode < 400) {
                 return json_decode($response->getBody()->getContents(), true, 512, JSON_THROW_ON_ERROR);
@@ -157,7 +159,7 @@ class ServiceClient
     public function getOptionalMovieName(string $request, ?array $options = null): mixed
     {
         try {
-            $response = $this->client->sendRequest();
+            $response = $this->client->sendRequest(new JsonApiRequest(baseUrl: $this->options['baseUrl'] ?? '', path: "movie", method: HttpMethod::POST, body: $request));
             $statusCode = $response->getStatusCode();
             if ($statusCode >= 200 && $statusCode < 400) {
                 return json_decode($response->getBody()->getContents(), true, 512, JSON_THROW_ON_ERROR);

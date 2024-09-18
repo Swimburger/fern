@@ -4,6 +4,8 @@ namespace Seed\Users;
 
 use Seed\Core\RawClient;
 use Seed\Users\Requests\ListUsersCursorPaginationRequest;
+use Seed\Core\JsonApiRequest;
+use Seed\Core\HttpMethod;
 use JsonException;
 use Exception;
 use Psr\Http\Client\ClientExceptionInterface;
@@ -54,7 +56,7 @@ class UsersClient
             $query['starting_after'] = $request->startingAfter;
         }
         try {
-            $response = $this->client->sendRequest();
+            $response = $this->client->sendRequest(new JsonApiRequest(baseUrl: $this->options['baseUrl'] ?? '', path: "/users", method: HttpMethod::GET, query: $query));
             $statusCode = $response->getStatusCode();
             if ($statusCode >= 200 && $statusCode < 400) {
                 return json_decode($response->getBody()->getContents(), true, 512, JSON_THROW_ON_ERROR);
@@ -75,7 +77,7 @@ class UsersClient
     public function listWithBodyCursorPagination(ListUsersBodyCursorPaginationRequest $request, ?array $options = null): mixed
     {
         try {
-            $response = $this->client->sendRequest();
+            $response = $this->client->sendRequest(new JsonApiRequest(baseUrl: $this->options['baseUrl'] ?? '', path: "/users", method: HttpMethod::POST, body: $request));
             $statusCode = $response->getStatusCode();
             if ($statusCode >= 200 && $statusCode < 400) {
                 return json_decode($response->getBody()->getContents(), true, 512, JSON_THROW_ON_ERROR);
@@ -109,7 +111,7 @@ class UsersClient
             $query['starting_after'] = $request->startingAfter;
         }
         try {
-            $response = $this->client->sendRequest();
+            $response = $this->client->sendRequest(new JsonApiRequest(baseUrl: $this->options['baseUrl'] ?? '', path: "/users", method: HttpMethod::GET, query: $query));
             $statusCode = $response->getStatusCode();
             if ($statusCode >= 200 && $statusCode < 400) {
                 return json_decode($response->getBody()->getContents(), true, 512, JSON_THROW_ON_ERROR);
@@ -130,7 +132,7 @@ class UsersClient
     public function listWithBodyOffsetPagination(ListUsersBodyOffsetPaginationRequest $request, ?array $options = null): mixed
     {
         try {
-            $response = $this->client->sendRequest();
+            $response = $this->client->sendRequest(new JsonApiRequest(baseUrl: $this->options['baseUrl'] ?? '', path: "/users", method: HttpMethod::POST, body: $request));
             $statusCode = $response->getStatusCode();
             if ($statusCode >= 200 && $statusCode < 400) {
                 return json_decode($response->getBody()->getContents(), true, 512, JSON_THROW_ON_ERROR);
@@ -161,7 +163,7 @@ class UsersClient
             $query['order'] = $request->order->value;
         }
         try {
-            $response = $this->client->sendRequest();
+            $response = $this->client->sendRequest(new JsonApiRequest(baseUrl: $this->options['baseUrl'] ?? '', path: "/users", method: HttpMethod::GET, query: $query));
             $statusCode = $response->getStatusCode();
             if ($statusCode >= 200 && $statusCode < 400) {
                 return json_decode($response->getBody()->getContents(), true, 512, JSON_THROW_ON_ERROR);
@@ -192,7 +194,7 @@ class UsersClient
             $query['order'] = $request->order->value;
         }
         try {
-            $response = $this->client->sendRequest();
+            $response = $this->client->sendRequest(new JsonApiRequest(baseUrl: $this->options['baseUrl'] ?? '', path: "/users", method: HttpMethod::GET, query: $query));
             $statusCode = $response->getStatusCode();
             if ($statusCode >= 200 && $statusCode < 400) {
                 return json_decode($response->getBody()->getContents(), true, 512, JSON_THROW_ON_ERROR);
@@ -217,7 +219,7 @@ class UsersClient
             $query['cursor'] = $request->cursor;
         }
         try {
-            $response = $this->client->sendRequest();
+            $response = $this->client->sendRequest(new JsonApiRequest(baseUrl: $this->options['baseUrl'] ?? '', path: "/users", method: HttpMethod::GET, query: $query));
             $statusCode = $response->getStatusCode();
             if ($statusCode >= 200 && $statusCode < 400) {
                 return json_decode($response->getBody()->getContents(), true, 512, JSON_THROW_ON_ERROR);
@@ -242,7 +244,7 @@ class UsersClient
             $query['cursor'] = $request->cursor;
         }
         try {
-            $response = $this->client->sendRequest();
+            $response = $this->client->sendRequest(new JsonApiRequest(baseUrl: $this->options['baseUrl'] ?? '', path: "/users", method: HttpMethod::GET, query: $query));
             $statusCode = $response->getStatusCode();
             if ($statusCode >= 200 && $statusCode < 400) {
                 return json_decode($response->getBody()->getContents(), true, 512, JSON_THROW_ON_ERROR);
@@ -267,7 +269,7 @@ class UsersClient
             $query['starting_after'] = $request->startingAfter;
         }
         try {
-            $response = $this->client->sendRequest();
+            $response = $this->client->sendRequest(new JsonApiRequest(baseUrl: $this->options['baseUrl'] ?? '', path: "/users", method: HttpMethod::GET, query: $query));
             $statusCode = $response->getStatusCode();
             if ($statusCode >= 200 && $statusCode < 400) {
                 return json_decode($response->getBody()->getContents(), true, 512, JSON_THROW_ON_ERROR);
@@ -292,7 +294,7 @@ class UsersClient
             $query['offset'] = $request->offset;
         }
         try {
-            $response = $this->client->sendRequest();
+            $response = $this->client->sendRequest(new JsonApiRequest(baseUrl: $this->options['baseUrl'] ?? '', path: "/users", method: HttpMethod::GET, query: $query));
             $statusCode = $response->getStatusCode();
             if ($statusCode >= 200 && $statusCode < 400) {
                 return json_decode($response->getBody()->getContents(), true, 512, JSON_THROW_ON_ERROR);

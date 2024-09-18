@@ -3,6 +3,8 @@
 namespace Seed\Homepage;
 
 use Seed\Core\RawClient;
+use Seed\Core\JsonApiRequest;
+use Seed\Core\HttpMethod;
 use JsonException;
 use Exception;
 use Psr\Http\Client\ClientExceptionInterface;
@@ -30,7 +32,7 @@ class HomepageClient
     public function getHomepageProblems(?array $options = null): mixed
     {
         try {
-            $response = $this->client->sendRequest();
+            $response = $this->client->sendRequest(new JsonApiRequest(baseUrl: $this->options['baseUrl'] ?? '', path: "/homepage-problems", method: HttpMethod::GET));
             $statusCode = $response->getStatusCode();
             if ($statusCode >= 200 && $statusCode < 400) {
                 return json_decode($response->getBody()->getContents(), true, 512, JSON_THROW_ON_ERROR);
@@ -51,7 +53,7 @@ class HomepageClient
     public function setHomepageProblems(array $request, ?array $options = null): mixed
     {
         try {
-            $response = $this->client->sendRequest();
+            $response = $this->client->sendRequest(new JsonApiRequest(baseUrl: $this->options['baseUrl'] ?? '', path: "/homepage-problems", method: HttpMethod::POST, body: $request));
             $statusCode = $response->getStatusCode();
             if ($statusCode >= 200 && $statusCode < 400) {
                 return;
